@@ -223,9 +223,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (data.status === 'ok' && data.items && data.items.length > 0) {
         const youtubeFilms = data.items.map(item => {
-          // Extract video ID from link: https://www.youtube.com/watch?v=VIDEO_ID
-          const match = item.link.match(/[?&]v=([^&#]+)/);
-          const videoId = match ? match[1] : '';
+          // Robust Video ID extraction (supports watch?v=, youtu.be/, shorts/, and embed/)
+          let videoId = '';
+          const vMatch = item.link.match(/[?&]v=([^&#]+)/);
+          if (vMatch) {
+            videoId = vMatch[1];
+          } else {
+            const shortMatch = item.link.match(/youtu\.be\/([^?&#]+)/) || item.link.match(/shorts\/([^?&#]+)/);
+            if (shortMatch) videoId = shortMatch[1];
+          }
           
           // Smart Categorization: checks title & description for keywords or hashtags
           const textToScan = `${item.title} ${item.description || ''}`.toLowerCase();
