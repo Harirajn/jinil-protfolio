@@ -8,10 +8,10 @@
 const CONFIG = {
   // 1. WhatsApp Number (Country code + phone number, NO spaces or '+' sign)
   // Example for India: "919876543210"
-  whatsappNumber: "919876543210",
+  whatsappNumber: "919562209894",
 
   // 2. Instagram Profile URL
-  instagramUrl: "https://instagram.com/jinilfilms",
+  instagramUrl: "https://www.instagram.com/jinil_jinu?stkn=MmxvbXF6ZHZ2dXNu",
 
   // 3. Contact Email Address
   email: "hello@jinilfilms.com",
