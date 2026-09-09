@@ -250,13 +250,21 @@
     <div class="video-modal-container">
       <div class="video-modal-header">
         <h4 class="video-modal-title" id="modalVideoTitle">Wedding Film</h4>
-        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close video player">
-          <i class="fas fa-times"></i>
-        </button>
+        <div class="video-modal-actions">
+          <button class="modal-fullscreen-btn" id="modalFullscreenBtn" aria-label="Full Screen" title="Full Screen (Horizontal)">
+            <i class="fas fa-expand"></i>
+          </button>
+          <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close video player">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
       </div>
-      <div class="video-wrapper">
-        <iframe id="modalIframe" src="" title="Wedding Film Player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
+      <div class="video-wrapper" id="videoWrapper">
+        <iframe id="modalIframe" src="" title="Wedding Film Player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-fullscreen"></iframe>
         <div class="video-blocker-top" id="videoBlockerTop" title="Jinil Films Cinema Player"></div>
+        <button class="landscape-exit-btn" id="landscapeExitBtn" aria-label="Exit Fullscreen" title="Exit Full Screen">
+          <i class="fas fa-compress"></i>
+        </button>
       </div>
     </div>
   </div>

@@ -697,20 +697,47 @@ a {
   color: #ffffff;
 }
 
+.video-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.modal-fullscreen-btn,
 .modal-close-btn {
   background: none;
   border: none;
   color: var(--text-secondary);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   cursor: pointer;
-  padding: 0.25rem;
+  padding: 0.35rem;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: var(--ease-smooth);
 }
 
-.modal-close-btn:hover {
+.modal-close-btn {
+  font-size: 1.25rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .modal-fullscreen-btn:hover,
+  .modal-close-btn:hover {
+    color: var(--gold);
+    transform: scale(1.15);
+  }
+
+  .modal-close-btn:hover {
+    transform: rotate(90deg) scale(1.1);
+  }
+}
+
+.modal-fullscreen-btn:active,
+.modal-close-btn:active {
+  transform: scale(0.9);
   color: var(--gold);
-  transform: rotate(90deg);
 }
 
 .video-wrapper {
@@ -719,6 +746,24 @@ a {
   padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
   background: #000000;
   overflow: hidden;
+}
+
+/* Horizontal Fullscreen Cinema Mode for Mobile, Tablet, and Desktop */
+.video-wrapper:fullscreen,
+.video-wrapper:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  padding-bottom: 0;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-wrapper:fullscreen iframe,
+.video-wrapper:-webkit-full-screen iframe {
+  width: 100%;
+  height: 100%;
 }
 
 .video-wrapper iframe {
@@ -739,6 +784,110 @@ a {
   z-index: 10;
   background: #000000;
   cursor: default;
+}
+
+/* ==========================================================================
+   Horizontal Landscape Fullscreen Mode (Mobile & Tablet Rotation)
+   ========================================================================== */
+.video-modal.landscape-mode .video-modal-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: #000000 !important;
+  overflow: visible !important;
+}
+
+.video-modal.landscape-mode .video-modal-header {
+  display: none !important;
+}
+
+@media (orientation: portrait) {
+  .video-modal.landscape-mode .video-wrapper,
+  .video-wrapper.landscape-fullscreen {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 100vh !important;
+    height: 100vw !important;
+    transform: translate(-50%, -50%) rotate(90deg) !important;
+    transform-origin: center center !important;
+    z-index: 999999 !important;
+    padding-bottom: 0 !important;
+    background: #000000 !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (orientation: landscape) {
+  .video-modal.landscape-mode .video-wrapper,
+  .video-wrapper.landscape-fullscreen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    transform: none !important;
+    z-index: 999999 !important;
+    padding-bottom: 0 !important;
+    background: #000000 !important;
+    overflow: hidden !important;
+  }
+}
+
+.video-modal.landscape-mode .video-wrapper iframe,
+.video-wrapper.landscape-fullscreen iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.video-modal.landscape-mode .video-blocker-top,
+.video-wrapper.landscape-fullscreen .video-blocker-top {
+  height: 52px !important;
+  background: #000000 !important;
+  z-index: 1000000 !important;
+}
+
+/* Floating Exit Fullscreen Button in Landscape Mode */
+.landscape-exit-btn {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(11, 12, 14, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 1.1rem;
+  z-index: 1000001;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  transition: var(--ease-smooth);
+}
+
+.video-modal.landscape-mode .landscape-exit-btn,
+.video-wrapper.landscape-fullscreen .landscape-exit-btn {
+  display: flex !important;
+}
+
+.landscape-exit-btn:active {
+  transform: scale(0.9);
+  background: var(--gold);
+  color: #0b0c0e;
 }
 
 /* ==========================================================================
