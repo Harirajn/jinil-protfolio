@@ -227,13 +227,16 @@ document.addEventListener('DOMContentLoaded', () => {
           const match = item.link.match(/[?&]v=([^&#]+)/);
           const videoId = match ? match[1] : '';
           
-          // Categorize based on title keywords
-          const titleLower = item.title.toLowerCase();
-          let category = 'highlight';
-          if (titleLower.includes('teaser') || titleLower.includes('trailer') || titleLower.includes('short')) {
+          // Smart Categorization: checks title & description for keywords or hashtags
+          const textToScan = `${item.title} ${item.description || ''}`.toLowerCase();
+          let category = 'highlight'; // Default category
+
+          if (textToScan.includes('#teaser') || textToScan.includes('teaser') || textToScan.includes('trailer') || textToScan.includes('short')) {
             category = 'teaser';
-          } else if (titleLower.includes('destination') || titleLower.includes('italy') || titleLower.includes('como') || titleLower.includes('paris')) {
+          } else if (textToScan.includes('#destination') || textToScan.includes('destination') || textToScan.includes('elopement')) {
             category = 'destination';
+          } else if (textToScan.includes('#highlight') || textToScan.includes('highlight')) {
+            category = 'highlight';
           }
 
           return {
