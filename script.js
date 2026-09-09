@@ -144,6 +144,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Prevent sticky selection/focus on mobile touchscreen devices
+  function clearActiveFocus(element) {
+    const el = element || document.activeElement;
+    if (el && typeof el.blur === 'function' && el !== document.body) {
+      el.blur();
+    }
+  }
+
+  // Clear focus immediately upon touchend / click
+  document.addEventListener('touchend', (e) => {
+    const el = e.target.closest('a, button');
+    if (el) {
+      clearActiveFocus(el);
+      setTimeout(() => clearActiveFocus(el), 50);
+      setTimeout(() => clearActiveFocus(el), 150);
+      setTimeout(() => clearActiveFocus(el), 350);
+    }
+  }, { passive: true });
+
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('a, button');
+    if (el) {
+      clearActiveFocus(el);
+      setTimeout(() => clearActiveFocus(el), 100);
+    }
+  });
+
+  // When returning to the portfolio tab from WhatsApp, Instagram, or Gmail apps
+  window.addEventListener('focus', () => {
+    clearActiveFocus();
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      clearActiveFocus();
+    }
+  });
+
   // 3. Render Film Cards Function
   const worksGrid = document.getElementById('worksGrid');
 
