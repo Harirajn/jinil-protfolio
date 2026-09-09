@@ -127,10 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
         videoId = vMatch[1];
       }
       if (videoId) {
-        return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&controls=1&fs=1`;
+        return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&controls=1&fs=0`;
       }
       const separator = url.includes('?') ? '&' : '?';
-      return `${url}${separator}autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&controls=1&fs=1`;
+      return `${url}${separator}autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&controls=1&fs=0`;
     } catch {
       return url;
     }

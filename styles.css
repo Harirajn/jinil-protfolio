@@ -847,11 +847,15 @@ a {
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  height: 100% !important;
+  height: calc(100% + 64px) !important;
 }
 
 .video-modal.landscape-mode .video-blocker-top,
 .video-wrapper.landscape-fullscreen .video-blocker-top {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
   height: 52px !important;
   background: #000000 !important;
   z-index: 1000000 !important;
@@ -860,34 +864,39 @@ a {
 /* Floating Exit Fullscreen Button in Landscape Mode */
 .landscape-exit-btn {
   display: none;
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(11, 12, 14, 0.85);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  font-size: 1.1rem;
-  z-index: 1000001;
+  position: fixed !important;
+  top: 18px !important;
+  right: 18px !important;
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50% !important;
+  background: rgba(11, 12, 14, 0.9) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1.5px solid var(--gold) !important;
+  color: var(--gold) !important;
+  font-size: 1.15rem !important;
+  z-index: 10000002 !important;
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.9) !important;
   transition: var(--ease-smooth);
 }
 
-.video-modal.landscape-mode .landscape-exit-btn,
-.video-wrapper.landscape-fullscreen .landscape-exit-btn {
+.video-modal.landscape-mode .landscape-exit-btn {
   display: flex !important;
 }
 
+.landscape-exit-btn:hover {
+  background: var(--gold) !important;
+  color: #0b0c0e !important;
+  transform: scale(1.1);
+}
+
 .landscape-exit-btn:active {
-  transform: scale(0.9);
-  background: var(--gold);
-  color: #0b0c0e;
+  transform: scale(0.92) !important;
+  background: var(--gold-light) !important;
+  color: #0b0c0e !important;
 }
 
 /* ==========================================================================

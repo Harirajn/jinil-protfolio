@@ -247,6 +247,12 @@
   <!-- Lightbox Video Player Modal -->
   <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="video-modal-backdrop" id="modalBackdrop"></div>
+    
+    <!-- Floating Exit Fullscreen Button (Positioned cleanly outside rotated frame) -->
+    <button class="landscape-exit-btn" id="landscapeExitBtn" aria-label="Exit Fullscreen" title="Exit Full Screen">
+      <i class="fas fa-compress"></i>
+    </button>
+
     <div class="video-modal-container">
       <div class="video-modal-header">
         <h4 class="video-modal-title" id="modalVideoTitle">Wedding Film</h4>
@@ -260,11 +266,8 @@
         </div>
       </div>
       <div class="video-wrapper" id="videoWrapper">
-        <iframe id="modalIframe" src="" title="Wedding Film Player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation allow-fullscreen"></iframe>
+        <iframe id="modalIframe" src="" title="Wedding Film Player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
         <div class="video-blocker-top" id="videoBlockerTop" title="Jinil Films Cinema Player"></div>
-        <button class="landscape-exit-btn" id="landscapeExitBtn" aria-label="Exit Fullscreen" title="Exit Full Screen">
-          <i class="fas fa-compress"></i>
-        </button>
       </div>
     </div>
   </div>
