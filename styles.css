@@ -37,6 +37,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Custom Cinematic Scrollbar */
@@ -142,10 +143,12 @@ a {
   background: var(--gold-subtle);
 }
 
-.header-btn:hover {
-  background: var(--gold);
-  color: #0b0c0e;
-  box-shadow: 0 0 15px var(--gold-glow);
+@media (hover: hover) and (pointer: fine) {
+  .header-btn:hover {
+    background: var(--gold);
+    color: #0b0c0e;
+    box-shadow: 0 0 15px var(--gold-glow);
+  }
 }
 
 /* ==========================================================================
@@ -184,8 +187,10 @@ a {
   transition: var(--ease-smooth);
 }
 
-.profile-image-card:hover .profile-pic {
-  transform: scale(1.03);
+@media (hover: hover) and (pointer: fine) {
+  .profile-image-card:hover .profile-pic {
+    transform: scale(1.03);
+  }
 }
 
 .status-pill {
@@ -255,7 +260,7 @@ a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   padding: 1.25rem;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -315,11 +320,13 @@ a {
   color: var(--gold);
 }
 
-.social-chip:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--gold);
-  color: #ffffff;
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .social-chip:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--gold);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
 }
 
 /* ==========================================================================
@@ -378,13 +385,22 @@ a {
   transition: var(--ease-smooth);
 }
 
-.filter-pill:hover,
 .filter-pill.active {
   background: var(--gold);
   border-color: var(--gold);
   color: #0b0c0e;
   font-weight: 600;
   box-shadow: 0 4px 15px var(--gold-glow);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .filter-pill:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #0b0c0e;
+    font-weight: 600;
+    box-shadow: 0 4px 15px var(--gold-glow);
+  }
 }
 
 /* Video Grid */
@@ -405,70 +421,22 @@ a {
   flex-direction: column;
 }
 
-.work-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--border-gold);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
-}
+@media (hover: hover) and (pointer: fine) {
+  .work-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-gold);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  }
 
-.card-media {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: #000;
-}
+  .work-card:hover .card-media img {
+    transform: scale(1.06);
+  }
 
-.card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  display: block;
-}
-
-.work-card:hover .card-media img {
-  transform: scale(1.06);
-}
-
-.media-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, rgba(11, 12, 14, 0.85) 0%, rgba(11, 12, 14, 0.1) 60%);
-  transition: var(--ease-smooth);
-}
-
-.play-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  width: 54px;
-  height: 54px;
-  background: rgba(212, 175, 55, 0.9);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #0b0c0e;
-  font-size: 1.15rem;
-  box-shadow: 0 0 20px var(--gold-glow);
-  cursor: pointer;
-  transition: var(--ease-smooth);
-  opacity: 0.9;
-}
-
-.play-btn i {
-  margin-left: 3px;
-}
-
-.work-card:hover .play-btn {
-  transform: translate(-50%, -50%) scale(1.08);
-  background: var(--gold-light);
-  opacity: 1;
+  .work-card:hover .play-btn {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: var(--gold-light);
+    opacity: 1;
+  }
 }
 
 .film-length {
@@ -551,14 +519,18 @@ a {
   letter-spacing: 0.05em;
 }
 
-.footer-email:hover {
-  color: var(--gold-light);
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .footer-email:hover {
+    color: var(--gold-light);
+    text-decoration: underline;
+  }
 }
 
 .footer-icons {
   display: flex;
   gap: 0.75rem;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .footer-icons a {
@@ -572,12 +544,29 @@ a {
   justify-content: center;
   color: var(--text-secondary);
   font-size: 0.85rem;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
 }
 
-.footer-icons a:hover {
-  color: var(--gold);
-  border-color: var(--gold);
-  transform: translateY(-2px);
+.footer-icons a i {
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer-icons a:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+}
+
+.footer-icons a:focus,
+.footer-icons a:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .copyright {
@@ -891,7 +880,7 @@ a {
 }
 
 /* 7. Touchscreen Optimization (Smartphones & Tablets) */
-@media (hover: none) and (pointer: coarse) {
+@media (pointer: coarse), (hover: none) {
   /* Ensure play button is always distinct and visible without needing hover */
   .play-btn {
     opacity: 1;
@@ -907,15 +896,52 @@ a {
   .social-chip, .filter-pill, .header-btn {
     min-height: 44px;
   }
+
+  /* Immediate press feedback that releases instantly upon lifting finger */
+  .header-btn:active,
+  .footer-icons a:active {
+    transform: scale(0.92) !important;
+    background: var(--gold-subtle) !important;
+  }
+
+  /* Completely eliminate sticky hover/focus states when tapped on mobile */
+  .footer-icons a:hover,
+  .footer-icons a:focus,
+  .footer-icons a:focus-visible {
+    color: var(--text-secondary) !important;
+    border-color: var(--border-subtle) !important;
+    transform: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .header-btn:hover,
+  .header-btn:focus,
+  .header-btn:focus-visible {
+    color: var(--gold) !important;
+    border-color: var(--border-gold) !important;
+    background: var(--gold-subtle) !important;
+    transform: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove sticky focus outline on mobile taps */
+  *:focus, *:focus-visible, a:focus, a:focus-visible, button:focus, button:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
 }
 
-/* 8. TV Remote & Keyboard Accessibility Focus Rings */
-:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-}
+/* 8. TV Remote & Keyboard Accessibility Focus Rings (Desktop/Mouse/Remote Only) */
+@media (hover: hover) and (pointer: fine) {
+  :focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
 
-button:focus-visible, a:focus-visible, .work-card:focus-visible {
-  box-shadow: 0 0 20px var(--gold-glow);
+  button:focus-visible, a:focus-visible, .work-card:focus-visible {
+    box-shadow: 0 0 20px var(--gold-glow);
+  }
 }
 
