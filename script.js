@@ -156,6 +156,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeVideoModal);
   if (modalBackdrop) modalBackdrop.addEventListener('click', closeVideoModal);
 
+  const videoBlockerTop = document.getElementById('videoBlockerTop');
+  if (videoBlockerTop) {
+    const absorb = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+    ['click', 'touchstart', 'touchend', 'pointerdown', 'pointerup'].forEach(evt => {
+      videoBlockerTop.addEventListener(evt, absorb, { passive: false });
+    });
+  }
+
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) {
       closeVideoModal();
