@@ -118,10 +118,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalCloseBtn = document.getElementById('modalCloseBtn');
   const modalBackdrop = document.getElementById('modalBackdrop');
 
+  function formatCleanEmbedUrl(url) {
+    if (!url) return '';
+    try {
+      let videoId = '';
+      const vMatch = url.match(/(?:embed\/|v=|youtu\.be\/|shorts\/)([^?&#]+)/);
+      if (vMatch) {
+        videoId = vMatch[1];
+      }
+      if (videoId) {
+        return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&controls=1`;
+      }
+      const separator = url.includes('?') ? '&' : '?';
+      return `${url}${separator}autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&controls=1`;
+    } catch {
+      return url;
+    }
+  }
+
   function openVideoModal(videoUrl, title) {
     if (!videoModal || !modalIframe) return;
     modalVideoTitle.textContent = title || 'Wedding Film';
-    modalIframe.src = videoUrl;
+    modalIframe.src = formatCleanEmbedUrl(videoUrl);
     videoModal.classList.add('active');
     videoModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
