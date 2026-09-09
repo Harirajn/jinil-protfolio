@@ -13,30 +13,36 @@ This document contains the exact files, line numbers, and steps to update your p
 
 ---
 
-## 1. Connecting Your Unlisted YouTube Playlist
+## 🌟 Central Settings File: `config.js` (Your .ENV File)
 
-Whenever you upload an unlisted wedding film to your YouTube playlist, it will automatically appear on your website.
-
-* **File to edit**: [`script.js`](file:///d:/Personal/Jinil-protfolio/script.js)
-* **Lines**: `15 – 18`
+You only need to open and edit **[`config.js`](file:///d:/Personal/Jinil-protfolio/config.js)**! 
+You never have to touch HTML or CSS code:
 
 ```javascript
-const SYNC_CONFIG = {
-  youtubeChannelId: '',   
-  youtubePlaylistId: 'PASTE_YOUR_PLAYLIST_ID_HERE',  // <-- Paste your PL... ID here
+const CONFIG = {
+  // 1. WhatsApp Number (country code + number, NO spaces, e.g. "919876543210")
+  whatsappNumber: "919876543210",
+
+  // 2. Instagram Profile URL
+  instagramUrl: "https://instagram.com/your_handle",
+
+  // 3. Contact Email Address
+  email: "your_email@gmail.com",
+
+  // 4. YouTube Playlist ID (Unlisted Playlist)
+  youtubePlaylistId: "PLab123cd456ef...",
+  youtubeChannelId: "",
 };
 ```
 
-### How to get your Playlist ID:
-1. Open your unlisted playlist on YouTube in a web browser.
-2. Look at the URL in the address bar:
-   `https://www.youtube.com/playlist?list=PLab123cd456ef...`
-3. Copy the letters after `list=` (starting with `PL...`).
-4. Paste it between the single quotes on line 17 of `script.js`.
+Whenever you update `config.js`, the entire website automatically updates:
+* Top-right WhatsApp button
+* Footer Email icon
+* Footer WhatsApp icon
+* Footer Instagram icon
+* YouTube auto-sync feed!
 
 ---
-
-## 2. Updating Contact & Social Media Links
 
 All contact chips, email addresses, and phone links are located in [`index.html`](file:///d:/Personal/Jinil-protfolio/index.html).
 
@@ -78,6 +84,8 @@ All contact chips, email addresses, and phone links are located in [`index.html`
 <div class="footer-contact">
   <a href="mailto:your_email@gmail.com" class="footer-email">your_email@gmail.com</a>
   <div class="footer-icons">
+    <a href="mailto:your_email@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://wa.me/91XXXXXXXXXX" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     <a href="https://instagram.com/YOUR_HANDLE" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
   </div>
 </div>

@@ -88,7 +88,30 @@ document.addEventListener('DOMContentLoaded', () => {
     availabilityText.textContent = `Available for ${currentYear} / ${nextYear} Weddings`;
   }
 
-  // 2. Video Modal System
+  // 2. Initialize Contacts & Links from config.js (ENV)
+  if (typeof CONFIG !== 'undefined') {
+    const topWhatsappBtn = document.getElementById('topWhatsappBtn');
+    if (topWhatsappBtn && CONFIG.whatsappNumber) {
+      topWhatsappBtn.href = `https://wa.me/${CONFIG.whatsappNumber.replace(/[^0-9]/g, '')}`;
+    }
+
+    const footerWhatsapp = document.getElementById('footerWhatsapp');
+    if (footerWhatsapp && CONFIG.whatsappNumber) {
+      footerWhatsapp.href = `https://wa.me/${CONFIG.whatsappNumber.replace(/[^0-9]/g, '')}`;
+    }
+
+    const footerEmail = document.getElementById('footerEmail');
+    if (footerEmail && CONFIG.email) {
+      footerEmail.href = `mailto:${CONFIG.email.trim()}`;
+    }
+
+    const footerInstagram = document.getElementById('footerInstagram');
+    if (footerInstagram && CONFIG.instagramUrl) {
+      footerInstagram.href = CONFIG.instagramUrl.trim();
+    }
+  }
+
+  // 3. Video Modal System
   const videoModal = document.getElementById('videoModal');
   const modalIframe = document.getElementById('modalIframe');
   const modalVideoTitle = document.getElementById('modalVideoTitle');
@@ -199,8 +222,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5. Automatic YouTube Feed Sync
   async function loadVideos() {
-    const hasChannel = Boolean(SYNC_CONFIG.youtubeChannelId.trim());
-    const hasPlaylist = Boolean(SYNC_CONFIG.youtubePlaylistId.trim());
+    const playlistId = (typeof CONFIG !== 'undefined' && CONFIG.youtubePlaylistId ? CONFIG.youtubePlaylistId : SYNC_CONFIG.youtubePlaylistId).trim();
+    const channelId = (typeof CONFIG !== 'undefined' && CONFIG.youtubeChannelId ? CONFIG.youtubeChannelId : SYNC_CONFIG.youtubeChannelId).trim();
+
+    const hasPlaylist = Boolean(playlistId);
+    const hasChannel = Boolean(channelId);
 
     if (!hasChannel && !hasPlaylist) {
       // Use curated collection if no YouTube ID is provided yet
@@ -211,9 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       let rssUrl = '';
       if (hasPlaylist) {
-        rssUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${encodeURIComponent(SYNC_CONFIG.youtubePlaylistId.trim())}`;
+        rssUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${encodeURIComponent(playlistId)}`;
       } else {
-        rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(SYNC_CONFIG.youtubeChannelId.trim())}`;
+        rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`;
       }
 
       // Convert YouTube RSS to JSON via public free CORS converter

@@ -36,7 +36,7 @@
         <span class="brand-sub">FILMMAKER</span>
       </a>
       <div class="header-actions">
-        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="header-btn" title="Chat on WhatsApp">
+        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="header-btn" id="topWhatsappBtn" title="Chat on WhatsApp">
           <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
       </div>
@@ -86,19 +86,6 @@
                 <span>India & Worldwide (Passport Ready)</span>
               </div>
             </div>
-          </div>
-
-          <!-- Contact / Social Links -->
-          <div class="profile-socials">
-            <a href="mailto:hello@jinilfilms.com" class="social-chip" title="Email Jinil">
-              <i class="fas fa-envelope"></i> hello@jinilfilms.com
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-chip" title="Instagram">
-              <i class="fab fa-instagram"></i> @jinilfilms
-            </a>
-            <a href="tel:+919876543210" class="social-chip" title="Phone / WhatsApp">
-              <i class="fab fa-whatsapp"></i> WhatsApp Me
-            </a>
           </div>
 
         </div>
@@ -245,9 +232,10 @@
         <p>Freelance Filmmaker available worldwide for discerning couples.</p>
       </div>
       <div class="footer-contact">
-        <a href="mailto:hello@jinilfilms.com" class="footer-email">hello@jinilfilms.com</a>
         <div class="footer-icons">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="mailto:hello@jinilfilms.com" id="footerEmail" aria-label="Email" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" id="footerWhatsapp" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" id="footerInstagram" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -273,6 +261,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
