@@ -76,9 +76,17 @@ const CURATED_FILMS = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Set Footer Year
+  // 1. Dynamic Dates (Footer Year & Booking Availability)
+  const currentYear = new Date().getFullYear();
+  const nextYear = currentYear + 1;
+
   const yearEl = document.getElementById('currentYear');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  if (yearEl) yearEl.textContent = currentYear;
+
+  const availabilityText = document.getElementById('availabilityText');
+  if (availabilityText) {
+    availabilityText.textContent = `Available for ${currentYear} / ${nextYear} Weddings`;
+  }
 
   // 2. Video Modal System
   const videoModal = document.getElementById('videoModal');
