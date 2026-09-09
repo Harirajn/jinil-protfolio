@@ -40,15 +40,14 @@ const SYNC_CONFIG = {
 
 All contact chips, email addresses, and phone links are located in [`index.html`](file:///d:/Personal/Jinil-protfolio/index.html).
 
-### A. Top Navigation Email Button
+### A. Top Navigation WhatsApp Button
 * **File**: `index.html`
-* **Line**: `30`
+* **Line**: `39`
 ```html
-<!-- Current -->
-<a href="mailto:hello@jinilfilms.com" class="header-btn">
-
-<!-- Change to your real email -->
-<a href="mailto:your_email@gmail.com" class="header-btn">
+<!-- Update with your actual WhatsApp phone number -->
+<a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="header-btn" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i> WhatsApp
+</a>
 ```
 
 ### B. Profile Contact Chips (Under Bio)
