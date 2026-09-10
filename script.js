@@ -90,24 +90,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Initialize Contacts & Links from config.js (ENV)
   if (typeof CONFIG !== 'undefined') {
-    const topWhatsappBtn = document.getElementById('topWhatsappBtn');
-    if (topWhatsappBtn && CONFIG.whatsappNumber) {
-      topWhatsappBtn.href = `https://wa.me/${CONFIG.whatsappNumber.replace(/[^0-9]/g, '')}`;
+    const rawPhone = CONFIG.whatsappNumber ? CONFIG.whatsappNumber.replace(/[^0-9]/g, '') : '';
+    
+    if (rawPhone) {
+      const waUrl = `https://wa.me/${rawPhone}`;
+      ['topWhatsappBtn', 'heroWhatsappBtn', 'ctaWhatsappBtn', 'footerWhatsapp'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = waUrl;
+      });
     }
 
-    const footerWhatsapp = document.getElementById('footerWhatsapp');
-    if (footerWhatsapp && CONFIG.whatsappNumber) {
-      footerWhatsapp.href = `https://wa.me/${CONFIG.whatsappNumber.replace(/[^0-9]/g, '')}`;
+    if (CONFIG.email) {
+      const mailUrl = `mailto:${CONFIG.email.trim()}`;
+      ['ctaEmailBtn', 'footerEmail'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = mailUrl;
+      });
     }
 
-    const footerEmail = document.getElementById('footerEmail');
-    if (footerEmail && CONFIG.email) {
-      footerEmail.href = `mailto:${CONFIG.email.trim()}`;
-    }
-
-    const footerInstagram = document.getElementById('footerInstagram');
-    if (footerInstagram && CONFIG.instagramUrl) {
-      footerInstagram.href = CONFIG.instagramUrl.trim();
+    if (CONFIG.instagramUrl) {
+      const instaUrl = CONFIG.instagramUrl.trim();
+      ['heroInstagramBtn', 'footerInstagram'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.href = instaUrl;
+      });
     }
   }
 
@@ -297,7 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
     films.forEach(film => {
       const card = document.createElement('article');
       card.className = 'work-card';
-      card.setAttribute('data-category', film.category || 'highlight');
+      const cat = film.category || 'highlight';
+      const categoryLabel = (cat === 'destination') ? 'Destination Film' : (cat === 'teaser' ? 'Cinema Teaser' : 'Highlight Reel');
+      card.setAttribute('data-category', cat);
       card.setAttribute('data-video', film.videoUrl);
       card.setAttribute('data-title', `${film.title} — ${film.location || 'Wedding Film'}`);
 
@@ -305,13 +313,18 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="card-media">
           <img src="${film.thumbnail}" alt="${film.title} Wedding Film" loading="lazy">
           <div class="media-overlay"></div>
+          <div class="media-sheen"></div>
           <button class="play-btn" aria-label="Play Film">
+            <span class="play-pulse"></span>
             <i class="fas fa-play"></i>
           </button>
           <span class="film-length"><i class="far fa-clock"></i> ${film.duration || 'Film'}</span>
         </div>
         <div class="card-meta">
-          <span class="card-loc">${film.location || 'Cinematic Film'}</span>
+          <div class="card-meta-top">
+            <span class="card-tag">${categoryLabel}</span>
+            <span class="card-loc"><i class="fas fa-map-pin"></i> ${film.location || 'Cinematic Film'}</span>
+          </div>
           <h3 class="card-title">${film.title}</h3>
           <p class="card-desc">${film.desc || 'Wedding Film by Jinil Krishna'}</p>
         </div>
@@ -438,4 +451,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize
   loadVideos();
+
+  // 6. Scroll Animations (Intersection Observer)
+  const fadeElements = document.querySelectorAll('.works-header, .work-card, .inquiry-content, .footer-content, .hero-content');
+  
+  // Add fade-up class
+  fadeElements.forEach(el => el.classList.add('fade-up'));
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target); // only animate once
+      }
+    });
+  }, observerOptions);
+
+  fadeElements.forEach(el => {
+    observer.observe(el);
+  });
+
+});
+
+
+// ==========================================================================
+// Editorial Hover List Media Switcher
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const editorialItems = document.querySelectorAll('.editorial-item');
+  const previewImg = document.getElementById('editorialPreviewImg');
+  
+  if (editorialItems.length > 0 && previewImg) {
+    editorialItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        const newSrc = item.getAttribute('data-image');
+        if (newSrc && previewImg.src !== newSrc) {
+          // Add a tiny opacity fade transition class if we wanted, 
+          // but CSS handles the opacity transition for img
+          previewImg.style.opacity = '0';
+          setTimeout(() => {
+            previewImg.src = newSrc;
+            previewImg.style.opacity = '1';
+          }, 150); // wait for fade out
+        }
+      });
+    });
+  }
 });

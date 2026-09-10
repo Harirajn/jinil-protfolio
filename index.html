@@ -18,13 +18,13 @@
   <!-- Google Fonts: Cormorant Garamond (editorial serif) & Plus Jakarta Sans (clean modern sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=2.0">
+  <link rel="stylesheet" href="styles.css?v=3.0">
 </head>
 <body>
 
@@ -33,11 +33,16 @@
     <div class="header-inner container">
       <a href="#" class="brand">
         <span class="brand-name">JINIL KRISHNA</span>
-        <span class="brand-sub">FILMMAKER</span>
+        <span class="brand-sub">CINEMATIC WEDDING FILMS</span>
       </a>
+      <nav class="header-nav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#works" class="nav-link">Selected Films</a>
+        <a href="#contact" class="nav-link">Inquire</a>
+      </nav>
       <div class="header-actions">
-        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="header-btn" id="topWhatsappBtn" title="Chat on WhatsApp">
-          <i class="fab fa-whatsapp"></i> WhatsApp
+        <a href="https://wa.me/919562209894" target="_blank" rel="noopener noreferrer" class="header-btn" id="topWhatsappBtn" title="Chat on WhatsApp">
+          <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
         </a>
       </div>
     </div>
@@ -45,13 +50,17 @@
 
   <main>
     <!-- Top Profile & Details Section -->
-    <section class="profile-hero">
+    <section class="profile-hero" id="about">
+      <div class="ambient-glow ambient-glow-1"></div>
+      <div class="ambient-glow ambient-glow-2"></div>
       <div class="container profile-grid">
         
         <!-- Profile Picture Column -->
         <div class="profile-image-col">
           <div class="profile-image-card">
-            <img src="jinil.jpg" alt="Jinil Krishna - Freelance Filmmaker" class="profile-pic">
+            <div class="profile-pic-wrapper">
+              <img src="jinil.jpg" alt="Jinil Krishna - Wedding Filmmaker" class="profile-pic">
+            </div>
             <div class="status-pill">
               <span class="status-dot"></span> <span id="availabilityText">Available for 2026 / 2027 Weddings</span>
             </div>
@@ -60,32 +69,45 @@
 
         <!-- Name & Details Column -->
         <div class="profile-info-col">
-          <span class="role-tag">Freelance Filmmaker</span>
+          <div class="role-badge">
+            <i class="fas fa-sparkles"></i> <span>Editorial Wedding Filmmaker</span>
+          </div>
           <h1 class="profile-name">Jinil Krishna</h1>
           <p class="profile-tagline">Preserving authentic emotion, unspoken glances, and wild joy in timeless motion picture.</p>
           
           <div class="profile-bio">
             <p>
-              Based in Kerala, India and available for destination celebrations worldwide. Over the past 7+ years, I’ve documented over 100 couples committing their lives to one another. My approach is unobtrusive, documentary-driven, and centered on honest feelings rather than staged poses.
+              Based in Kerala, India and available for luxury celebrations worldwide. Over the past 7+ years, I’ve documented over 100 couples committing their lives to one another. My approach is unobtrusive, documentary-driven, and centered on honest feelings rather than staged poses.
             </p>
           </div>
 
-          <!-- Quick Details / Specs -->
-          <div class="details-list">
-            <div class="detail-item">
-              <i class="fas fa-video detail-icon"></i>
-              <div>
-                <strong>Style & Craft</strong>
-                <span>Cinema 4K 10-Bit • Handcrafted Color Tone</span>
-              </div>
+          <!-- Signature Highlights / Stats -->
+          <div class="stats-row">
+            <div class="stat-card">
+              <span class="stat-number">7<span class="stat-plus">+</span></span>
+              <span class="stat-label">Years of Craft</span>
             </div>
-            <div class="detail-item">
-              <i class="fas fa-location-dot detail-icon"></i>
-              <div>
-                <strong>Location & Travel</strong>
-                <span>India & Worldwide (Passport Ready)</span>
-              </div>
+            <div class="stat-card">
+              <span class="stat-number">100<span class="stat-plus">+</span></span>
+              <span class="stat-label">Couples Documented</span>
             </div>
+            <div class="stat-card">
+              <span class="stat-number">Global</span>
+              <span class="stat-label">Passport Ready</span>
+            </div>
+          </div>
+
+          <!-- Hero Actions -->
+          <div class="hero-actions">
+            <a href="#works" class="btn btn-primary">
+              <i class="fas fa-play"></i> Explore Selected Films
+            </a>
+            <a href="https://wa.me/919562209894" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="heroWhatsappBtn">
+              <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+            <a href="https://www.instagram.com/jinil_jinu?stkn=MmxvbXF6ZHZ2dXNu" target="_blank" rel="noopener noreferrer" class="btn btn-icon" id="heroInstagramBtn" aria-label="Instagram" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
           </div>
 
         </div>
@@ -114,124 +136,101 @@
         </div>
 
         <!-- Video Works Grid (Populated dynamically from YouTube / Curated list) -->
-        <div class="works-grid" id="worksGrid">
+        <!-- Editorial Hover List -->
+        <div class="editorial-works-container" id="worksGrid">
+          
+          <div class="editorial-list">
+            <!-- Work 1 -->
+            <div class="editorial-item work-card" data-category="destination" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Julian & Isabella — Lake Como, Italy" data-image="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80">
+              <div class="editorial-item-meta">
+                <span class="editorial-tag">Destination Film</span>
+                <span class="editorial-loc"><i class="fas fa-map-pin"></i> Lake Como, Italy</span>
+              </div>
+              <h3 class="editorial-title">Julian & Isabella</h3>
+            </div>
 
-          <!-- Work 1 -->
-          <article class="work-card" data-category="destination" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Julian & Isabella — Lake Como, Italy">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80" alt="Lake Como Wedding Film" loading="lazy">
-              <div class="media-overlay"></div>
-              <button class="play-btn" aria-label="Play Film">
-                <i class="fas fa-play"></i>
-              </button>
-              <span class="film-length"><i class="far fa-clock"></i> 4:35</span>
+            <!-- Work 2 -->
+            <div class="editorial-item work-card" data-category="highlight" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Liam & Sophia — Napa Valley Vineyards" data-image="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80">
+              <div class="editorial-item-meta">
+                <span class="editorial-tag">Highlight Reel</span>
+                <span class="editorial-loc"><i class="fas fa-map-pin"></i> Napa Valley, California</span>
+              </div>
+              <h3 class="editorial-title">Liam & Sophia</h3>
             </div>
-            <div class="card-meta">
-              <span class="card-loc">Lake Como, Italy</span>
-              <h3 class="card-title">Julian & Isabella</h3>
-              <p class="card-desc">Villa Balbianello • Destination Highlight Film</p>
-            </div>
-          </article>
 
-          <!-- Work 2 -->
-          <article class="work-card" data-category="highlight" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Liam & Sophia — Napa Valley Vineyards">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80" alt="Napa Valley Wedding Film" loading="lazy">
-              <div class="media-overlay"></div>
-              <button class="play-btn" aria-label="Play Film">
-                <i class="fas fa-play"></i>
-              </button>
-              <span class="film-length"><i class="far fa-clock"></i> 5:20</span>
+            <!-- Work 3 -->
+            <div class="editorial-item work-card" data-category="teaser" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Marcus & Elena — Santorini Cliffside" data-image="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80">
+              <div class="editorial-item-meta">
+                <span class="editorial-tag">Cinema Teaser</span>
+                <span class="editorial-loc"><i class="fas fa-map-pin"></i> Oia, Santorini</span>
+              </div>
+              <h3 class="editorial-title">Marcus & Elena</h3>
             </div>
-            <div class="card-meta">
-              <span class="card-loc">Napa Valley, California</span>
-              <h3 class="card-title">Liam & Sophia</h3>
-              <p class="card-desc">Meadowood Estate • Full Highlight Reel</p>
-            </div>
-          </article>
 
-          <!-- Work 3 -->
-          <article class="work-card" data-category="teaser" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Marcus & Elena — Santorini Cliffside">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80" alt="Santorini Wedding Film" loading="lazy">
-              <div class="media-overlay"></div>
-              <button class="play-btn" aria-label="Play Film">
-                <i class="fas fa-play"></i>
-              </button>
-              <span class="film-length"><i class="far fa-clock"></i> 1:15</span>
+            <!-- Work 4 -->
+            <div class="editorial-item work-card" data-category="destination" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Alexander & Camille — Chateau de Chantilly" data-image="https://images.unsplash.com/photo-1519225429980-715cb0215aed?auto=format&fit=crop&w=1200&q=80">
+              <div class="editorial-item-meta">
+                <span class="editorial-tag">Destination Film</span>
+                <span class="editorial-loc"><i class="fas fa-map-pin"></i> Paris, France</span>
+              </div>
+              <h3 class="editorial-title">Alexander & Camille</h3>
             </div>
-            <div class="card-meta">
-              <span class="card-loc">Oia, Santorini</span>
-              <h3 class="card-title">Marcus & Elena</h3>
-              <p class="card-desc">Aegean Sunset • 60-Second Social Teaser</p>
-            </div>
-          </article>
 
-          <!-- Work 4 -->
-          <article class="work-card" data-category="destination" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Alexander & Camille — Chateau de Chantilly">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1519225429980-715cb0215aed?auto=format&fit=crop&w=1200&q=80" alt="French Chateau Wedding Film" loading="lazy">
-              <div class="media-overlay"></div>
-              <button class="play-btn" aria-label="Play Film">
-                <i class="fas fa-play"></i>
-              </button>
-              <span class="film-length"><i class="far fa-clock"></i> 6:50</span>
+            <!-- Work 5 -->
+            <div class="editorial-item work-card" data-category="highlight" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Noah & Aria — Kerala Backwaters & Heritage" data-image="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80">
+              <div class="editorial-item-meta">
+                <span class="editorial-tag">Highlight Reel</span>
+                <span class="editorial-loc"><i class="fas fa-map-pin"></i> Kumarakom, Kerala</span>
+              </div>
+              <h3 class="editorial-title">Noah & Aria</h3>
             </div>
-            <div class="card-meta">
-              <span class="card-loc">Paris, France</span>
-              <h3 class="card-title">Alexander & Camille</h3>
-              <p class="card-desc">Chateau de Chantilly • Cinematic Feature</p>
-            </div>
-          </article>
 
-          <!-- Work 5 -->
-          <article class="work-card" data-category="highlight" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Noah & Aria — Kerala Backwaters & Heritage">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80" alt="Heritage Wedding Film" loading="lazy">
-              <div class="media-overlay"></div>
-              <button class="play-btn" aria-label="Play Film">
-                <i class="fas fa-play"></i>
-              </button>
-              <span class="film-length"><i class="far fa-clock"></i> 4:40</span>
+            <!-- Work 6 -->
+            <div class="editorial-item work-card" data-category="teaser" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Ethan & Chloe — Colorado Mountains" data-image="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=1200&q=80">
+              <div class="editorial-item-meta">
+                <span class="editorial-tag">Cinema Teaser</span>
+                <span class="editorial-loc"><i class="fas fa-map-pin"></i> Aspen, Colorado</span>
+              </div>
+              <h3 class="editorial-title">Ethan & Chloe</h3>
             </div>
-            <div class="card-meta">
-              <span class="card-loc">Kumarakom, Kerala</span>
-              <h3 class="card-title">Noah & Aria</h3>
-              <p class="card-desc">Waterfront Palace • Traditional Highlight</p>
-            </div>
-          </article>
+          </div>
 
-          <!-- Work 6 -->
-          <article class="work-card" data-category="teaser" data-video="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?autoplay=1" data-title="Ethan & Chloe — Colorado Mountains">
-            <div class="card-media">
-              <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=1200&q=80" alt="Mountain Elopement Film" loading="lazy">
-              <div class="media-overlay"></div>
-              <button class="play-btn" aria-label="Play Film">
-                <i class="fas fa-play"></i>
-              </button>
-              <span class="film-length"><i class="far fa-clock"></i> 1:30</span>
-            </div>
-            <div class="card-meta">
-              <span class="card-loc">Aspen, Colorado</span>
-              <h3 class="card-title">Ethan & Chloe</h3>
-              <p class="card-desc">Mountain Elopement • Cinematic Teaser</p>
-            </div>
-          </article>
+          <div class="editorial-media-preview">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80" alt="Film Preview" id="editorialPreviewImg">
+          </div>
 
+        </div></div>
+      </div>
+    </section>
+
+    <!-- Luxury Inquiry / Booking Section -->
+    <section class="inquiry-section" id="contact">
+      <div class="inquiry-mesh"></div>
+      <div class="container">
+        <div class="inquiry-content">
+          <span class="section-label">Reserve Your Date</span>
+          <h2 class="inquiry-title">Let’s Tell Your Story In Timeless Motion</h2>
+          <p class="inquiry-desc">Now reserving a limited number of destination and bespoke celebrations for 2026 & 2027. <br>Connect directly with Jinil to check availability for your date.</p>
+          <div class="inquiry-actions">
+            <a href="https://wa.me/919562209894" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="ctaWhatsappBtn">
+              <i class="fab fa-whatsapp"></i> Inquire via WhatsApp
+            </a>
+            <a href="mailto:hello@jinilfilms.com" class="btn btn-secondary" id="ctaEmailBtn">
+              <i class="fas fa-envelope"></i> Send Email
+            </a>
+          </div>
         </div>
-
       </div>
     </section>
   </main>
 
-  <!-- Clean Footer & Quick Contact -->
+  <!-- Classy Footer -->
   <footer class="footer">
+    <div class="footer-watermark">JINIL KRISHNA</div>
     <div class="container footer-content">
-      <div class="footer-left">
+      <div class="footer-center">
         <h3>Jinil Krishna</h3>
         <p>Freelance Filmmaker available worldwide for discerning couples.</p>
-      </div>
-      <div class="footer-contact">
         <div class="footer-icons">
           <a href="mailto:hello@jinilfilms.com" id="footerEmail" aria-label="Email" title="Email"><i class="fas fa-envelope"></i></a>
           <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" id="footerWhatsapp" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -239,8 +238,11 @@
         </div>
       </div>
     </div>
-    <div class="container copyright">
-      <p>&copy; <span id="currentYear"></span> Jinil Krishna. All rights reserved.</p>
+    <div class="footer-bottom">
+      <div class="container copyright">
+        <p>&copy; <span id="currentYear"></span> Jinil Krishna. All rights reserved.</p>
+        <a href="#about" class="back-to-top">Back to top <i class="fas fa-arrow-up"></i></a>
+      </div>
     </div>
   </footer>
 
@@ -273,7 +275,7 @@
   </div>
 
   <!-- Scripts -->
-  <script src="config.js?v=2.0"></script>
-  <script src="script.js?v=2.0"></script>
+  <script src="config.js?v=3.0"></script>
+  <script src="script.js?v=3.0"></script>
 </body>
 </html>
