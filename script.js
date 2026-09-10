@@ -170,6 +170,16 @@ document.addEventListener('DOMContentLoaded', () => {
       modalFullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
       modalFullscreenBtn.setAttribute('title', 'Exit Full Screen');
     }
+    try {
+      const fsTarget = videoModal;
+      if (fsTarget && !document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (fsTarget.requestFullscreen) {
+          fsTarget.requestFullscreen().catch(() => {});
+        } else if (fsTarget.webkitRequestFullscreen) {
+          fsTarget.webkitRequestFullscreen();
+        }
+      }
+    } catch {}
   }
 
   function exitLandscapeFullscreen() {
@@ -178,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     videoWrapper.classList.remove('landscape-fullscreen');
     if (modalFullscreenBtn) {
       modalFullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-      modalFullscreenBtn.setAttribute('title', 'Full Screen (Horizontal)');
+      modalFullscreenBtn.setAttribute('title', 'Full Screen');
     }
     try {
       if (document.fullscreenElement || document.webkitFullscreenElement) {
@@ -209,9 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Update fullscreen state on native browser fullscreen change
-  ['fullscreenchange', 'webkitfullscreenchange'].forEach(evt => {
+  ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach(evt => {
     document.addEventListener(evt, () => {
-      const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+      const isNativeFs = Boolean(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
       if (!isNativeFs && videoWrapper && videoWrapper.classList.contains('landscape-fullscreen')) {
         exitLandscapeFullscreen();
       }
@@ -231,7 +241,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) {
-      closeVideoModal();
+      if (videoWrapper && videoWrapper.classList.contains('landscape-fullscreen')) {
+        exitLandscapeFullscreen();
+      } else {
+        closeVideoModal();
+      }
     }
   });
 
